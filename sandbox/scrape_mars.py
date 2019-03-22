@@ -4,7 +4,9 @@
 # Homework 12: Web Scrabing & Document Data Bases
 # In this assignment, I built a web application that scraped various websites for data related to the Mission to Mars
 # and displayed the information in a single HTML page. The following outlines what I did:
-#############################################################################
+###########################################################################
+
+
 # Step 1 - Scraping
 
 # Mission to Mars Web application
