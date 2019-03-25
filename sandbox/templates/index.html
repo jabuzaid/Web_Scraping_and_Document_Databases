@@ -27,7 +27,7 @@
 
       <div class="sigline">
         <p>
-          Joe J. abuzaid | Unversity of California at Berkeley: Data Analytics & Visualization |
+          Joe J. abuzaid | University of California at Berkeley: Data Analytics & Visualization Bootcamp| March 2019
         </p>
       </div>
     </div>
@@ -44,8 +44,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-8 big_box">
-          <h2>Mars featured image from JPL.</h2>
-          <img src="{{mars.featured_image_url}}" alt="Mars featured image" />
+          <h2>Mars featured image</h2>
+          <img src="{{mars.featured_image_url}}" height="350" width="700" alt="Mars featured image" />
         </div>
 
         <div class="col-md-4">
@@ -60,41 +60,20 @@
 
           <div class="col-md-12">
             <h3>Mars facts</h3>
-            {{mars.mars_facts}}
+            {{mars.mars_facts | safe}}
           </div>
         </div>
-
       </div>
-
     </div>
     <div class="container-fluid">
-
-      <div class="jumbotron">
-        <h1>Mars Hemispheres</h1>
-
-        <div class="row">
-          <div class="col-md-6">
-            <img src="{{mars.mars_hemi[0]['img_url']}}" alt="Mars Hemisphere1" style="width:400px;height:400px;border:0;">
-            <h3>{{mars.mars_hemi[0]['title']}}</h3>
-          </div>
-          <div class="col-md-6">
-            <img src="{{mars.mars_hemi[1]['img_url']}}" alt="Mars Hemisphere2" style="width:400px;height:400px;border:0;">
-            <h3>{{mars.mars_hemi[1]['title']}}</h3>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-6">
-            <img src="{{mars.mars_hemi[0]['img_url']}}" alt="Mars Hemisphere1" style="width:400px;height:400px;border:0;">
-            <h3>{{mars.mars_hemis0]['title']}}</h3>
-          </div>
-          <div class="col-md-6">
-            <img src="{{mars.mars_hemi[1]['img_url']}}" alt="Mars Hemisphere2" style="width:400px;height:400px;border:0;">
-            <h3>{{mars.mars_hemi[1]['title']}}</h3>
-          </div>
-        </div>
-
+        {% for hemisphere in mars.mars_hemi %}
+            <div class="card col-md-6" style="width: 18rem;">
+                <img src={{hemisphere.image}} class="card-img-top" height="175" width="175" alt="...">
+                <div class="card-body">
+                  <h6 class="card-title">{{ hemisphere.title}}</h6>
+                </div>
+            </div>
+        {% endfor %}  
 
       </div>
     </div>

@@ -16,19 +16,22 @@ from bs4 import BeautifulSoup as bs
 import requests
 import os
 import pandas as pd
+import time
+from flask import jsonify
 
 
 def init_browser():
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
-
+    return Browser('chrome', **executable_path, headless=False)
+     
 
 def scrape():
     browser = init_browser()
     # NASA Mars News
     # Retrieve page with the requests module
     url = 'https://mars.nasa.gov/news/'
-    browser.visit(url)
+    browser.visit(url)    
+    time.sleep(1)
     # Create a Beautiful Soup object
     soup = bs(browser.html, 'html.parser')
     # Create a dictionary for all of the scraped data
@@ -47,7 +50,9 @@ def scrape():
     # Visit the url for JPL Featured Space Image
     url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(url)
+    time.sleep(1)
     browser.click_link_by_partial_text("FULL IMAGE")
+    time.sleep(1)
     browser.click_link_by_partial_text("more info")
     # Create a Beautiful Soup object
     soup = bs(browser.html, 'html.parser')
@@ -71,13 +76,13 @@ def scrape():
     # Mars Weather Twitter account.
     url = "http://space-facts.com/mars/"
     df = pd.read_html(url)[0]
-    df.columns=['parameter', 'value']
-    df.set_index('parameter', inplace =True)
+    df.columns=['Fact', 'Value']
+#     df.set_index('parameter', inplace =True)
     # Add the Mars facts table to the dictionary
-    mars_data["mars_facts"] = df
-    html_data = df.to_html()
+    #mars_data["mars_facts"] = df
+    html_data = df.to_html(index=False)
     # Add the Mars facts table html to the dictionary
-    mars_data["mars_facts_html_data"] = html_data
+    mars_data["mars_facts"] = html_data
 
 
     # Mars Hemispheres
@@ -102,7 +107,7 @@ def scrape():
             soup = bs(browser.html, 'html.parser')
             largimage = soup.find("img", class_="wide-image")
             print(largimage['src'])
-            mars_hemi.append({"Title":title,"image":largimage['src']})     
+            mars_hemi.append({"title":title,"image":"https://astrogeology.usgs.gov" + largimage['src']})     
     # Add mars_hemi img_url` and `title` to the dictionary        
     mars_data["mars_hemi"] = mars_hemi
     return mars_data
