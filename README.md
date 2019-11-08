@@ -2,7 +2,7 @@
 
 ![mission_to_mars](sandbox/Images/mission_to_mars.jpg)
 
-In this assignment, I built a web application that scrapes various websites for data related to the Mission to Mars and displays the information in a single HTML page. Here are the outlines for what I did.
+In this assignment, I built a web application that scrapes various websites for data related to the Mission to Mars and displayed the information in a single HTML page. Here are the outlines for what I did.
 
 ## Step 1 - Scraping
 
