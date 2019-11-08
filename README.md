@@ -12,7 +12,7 @@ The initial scraping was done using Jupyter Notebook, BeautifulSoup, Pandas, and
 
 ### NASA Mars News
 
-* Scraped the [NASA Mars News Site](https://mars.nasa.gov/news/) and collected the latest News Title and Paragraph Text. Assigned the text to variables that I can reference later.
+* Scraped the [NASA Mars News Site](https://mars.nasa.gov/news/) and collected the latest News Title and Paragraph Text. Assigned the text to variables that I referenced later.
 
 ```python
 # Example:
